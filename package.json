@@ -1,0 +1,36 @@
+{
+  "name": "react-zero-ai",
+  "version": "0.1.0",
+  "description": "React hooks for on-device AI — image classification, sentiment analysis, embeddings. Zero uploads, full privacy.",
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts --clean",
+    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "test": "vitest",
+    "lint": "eslint src"
+  },
+  "keywords": [
+    "react", "hooks", "ai", "machine-learning", "transformers",
+    "image-classification", "sentiment-analysis", "privacy", "on-device",
+    "offline", "webassembly", "onnx"
+  ],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=18.0.0"
+  },
+  "dependencies": {
+    "@huggingface/transformers": "^3.3.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18",
+    "react": "^18",
+    "tsup": "^8",
+    "typescript": "^5",
+    "vitest": "^1"
+  }
+}
