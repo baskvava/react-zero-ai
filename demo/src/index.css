@@ -37,9 +37,7 @@ body {
 }
 
 #root {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0 20px 80px;
+  width: 100%;
 }
 
 ::-webkit-scrollbar { width: 4px; height: 4px; }
