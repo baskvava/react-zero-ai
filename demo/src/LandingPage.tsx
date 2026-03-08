@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import logo from './assets/logo.png';
 
 interface LandingPageProps {
   onEnter: () => void;
@@ -15,10 +16,30 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
     <div className={`landing-container ${mounted ? 'ready' : ''}`}>
       <div className="bg-glow"></div>
       
+      <nav className="main-nav">
+        <div className="nav-container">
+          <div className="nav-brand">
+            <img src={logo} alt="logo" className="nav-logo" />
+            <span className="brand-name">react-zero-ai</span>
+          </div>
+          <div className="nav-links">
+            <a href="https://github.com/react-zero-ai/react-zero-ai" target="_blank" rel="noopener noreferrer" className="nav-link">
+              GitHub
+            </a>
+            <button className="nav-btn-action" onClick={onEnter}>
+              Demo
+            </button>
+          </div>
+        </div>
+      </nav>
+      
       <main className="hero">
         <div className="hero-content">
           <div className="hero-kicker">
-            <span className="badge">100% Client-Side</span>
+            <span className="badge">
+              <span className="live-dot"></span>
+              100% Client-Side
+            </span>
             <span className="kicker-line">local-ai-react</span>
           </div>
           
