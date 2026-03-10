@@ -16,6 +16,7 @@ import type {
   ProgressMessage,
   TaskType,
 } from "./inference.worker";
+import { WORKER_CODE } from "./worker-code";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -72,12 +73,9 @@ export class WorkerBridge {
   private worker: Worker;
 
   private constructor() {
-    // new URL(..., import.meta.url) lets bundlers (Vite, webpack 5) resolve
-    // the worker file and emit it as a separate chunk automatically.
-    this.worker = new Worker(
-      new URL("./workers/inference.worker.js", import.meta.url),
-      { type: "module" }
-    );
+    const blob = new Blob([WORKER_CODE], { type: "application/javascript" });
+    const url = URL.createObjectURL(blob);
+    this.worker = new Worker(url);
 
     this.worker.addEventListener("message", this.handleMessage.bind(this));
     this.worker.addEventListener("error", this.handleError.bind(this));
