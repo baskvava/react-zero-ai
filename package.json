@@ -1,6 +1,6 @@
 {
   "name": "@baskvava/react-zero-ai",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "React hooks for on-device AI — image classification, sentiment analysis, embeddings. Zero uploads, full privacy.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
