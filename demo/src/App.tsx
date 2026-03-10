@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import LandingPage from './LandingPage';
 import FunctionalDemo from './FunctionalDemo';
@@ -6,10 +6,10 @@ import Docs from './Docs';
 import './App.css';
 
 export default function App() {
-  const [view, setView] = useState<'home' | 'docs'>('home');
+  const navigate = useNavigate();
 
   const handleGoToDemo = () => {
-    if (view !== 'home') setView('home');
+    navigate('/');
     setTimeout(() => {
       document.getElementById('demo-section')?.scrollIntoView({ behavior: 'smooth' });
     }, 100);
@@ -17,23 +17,23 @@ export default function App() {
 
   return (
     <div className="app-root">
-      <Navbar 
-        currentView={view} 
-        onGoHome={() => setView('home')} 
-        onGoToDocs={() => setView('docs')} 
-        onGoToDemo={handleGoToDemo}
-      />
-      
-      {view === 'home' ? (
-        <>
-          <LandingPage onEnter={handleGoToDemo} />
-          <div id="demo-section" className="demo-section-wrapper">
-            <FunctionalDemo />
-          </div>
-        </>
-      ) : (
-        <Docs />
-      )}
+      <Navbar onGoToDemo={handleGoToDemo} />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <LandingPage onEnter={handleGoToDemo} />
+              <div id="demo-section" className="demo-section-wrapper">
+                <FunctionalDemo />
+              </div>
+            </>
+          }
+        />
+        <Route path="/docs" element={<Docs />} />
+        <Route path="/docs/:hookId" element={<Docs />} />
+      </Routes>
     </div>
   );
 }
