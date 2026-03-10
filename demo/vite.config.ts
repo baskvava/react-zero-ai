@@ -29,6 +29,7 @@ function crossOriginIsolationPlugin(): Plugin {
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: process.env.GITHUB_PAGES ? '/react-zero-ai/' : '/',
   plugins: [react(), crossOriginIsolationPlugin()],
   resolve: {
     alias: {

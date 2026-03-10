@@ -1,4 +1,4 @@
-import { LoadProgress, ModelStatus } from "../types";
+import { LoadProgress, ModelStatus } from "./types";
 
 // ─── Model singleton cache ─────────────────────────────────────────────────────
 // Prevents re-downloading the same model across multiple hook instances

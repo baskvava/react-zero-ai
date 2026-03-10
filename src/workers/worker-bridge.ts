@@ -33,7 +33,6 @@ type PendingEntry = {
 
 // ─── Singleton bridge ─────────────────────────────────────────────────────────
 
-let workerInstance: Worker | null = null;
 const pending = new Map<string, PendingEntry>();
 let idCounter = 0;
 
@@ -82,8 +81,6 @@ export class WorkerBridge {
 
     this.worker.addEventListener("message", this.handleMessage.bind(this));
     this.worker.addEventListener("error", this.handleError.bind(this));
-
-    workerInstance = this.worker;
   }
 
   // ── Internal message handler ──────────────────────────────────────────────
@@ -167,7 +164,6 @@ export class WorkerBridge {
   /** Terminate the worker and free memory */
   destroy() {
     this.worker.terminate();
-    workerInstance = null;
     pending.clear();
   }
 }

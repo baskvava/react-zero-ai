@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="https://huggingface.co/datasets/huggingface/brand-assets/resolve/main/hf-logo.png" width="80" alt="Hugging Face Logo" />
   <h1>⚡ react-zero-ai</h1>
   <p><strong>Insanely fast, 100% Client-Side AI React Hooks. Zero backend. Zero API keys. Absolute Privacy.</strong></p>
 

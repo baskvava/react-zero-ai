@@ -400,7 +400,7 @@ interface FunctionalDemoProps {
   onBack?: () => void;
 }
 
-export default function FunctionalDemo({ onBack }: FunctionalDemoProps) {
+export default function FunctionalDemo(_props: FunctionalDemoProps) {
   const [tab, setTab] = useState('clf');
 
   return (

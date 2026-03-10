@@ -18,8 +18,13 @@
     "image-classification", "sentiment-analysis", "privacy", "on-device",
     "offline", "webassembly", "onnx"
   ],
-  "author": "",
+  "author": "react-zero-ai contributors",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/baskvava/react-zero-ai.git"
+  },
+  "homepage": "https://github.com/baskvava/react-zero-ai#readme",
   "peerDependencies": {
     "react": ">=18.0.0"
   },
