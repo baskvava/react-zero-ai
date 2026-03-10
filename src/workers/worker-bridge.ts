@@ -75,7 +75,7 @@ export class WorkerBridge {
     // new URL(..., import.meta.url) lets bundlers (Vite, webpack 5) resolve
     // the worker file and emit it as a separate chunk automatically.
     this.worker = new Worker(
-      new URL("./inference.worker.ts", import.meta.url),
+      new URL("./workers/inference.worker.js", import.meta.url),
       { type: "module" }
     );
 

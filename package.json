@@ -1,24 +1,42 @@
 {
-  "name": "react-zero-ai",
+  "name": "@baskvava/react-zero-ai",
   "version": "0.1.0",
   "description": "React hooks for on-device AI — image classification, sentiment analysis, embeddings. Zero uploads, full privacy.",
   "main": "dist/index.js",
-  "module": "dist/index.esm.js",
+  "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
-  "files": ["dist"],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
   "sideEffects": false,
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts --clean --external react,react-dom",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch --external react,react-dom",
+    "build": "tsup src/index.ts src/workers/inference.worker.ts --format cjs,esm --dts --clean --external react,react-dom",
+    "dev": "tsup src/index.ts src/workers/inference.worker.ts --format cjs,esm --dts --watch --external react,react-dom",
     "test": "vitest",
     "lint": "eslint src"
   },
   "keywords": [
-    "react", "hooks", "ai", "machine-learning", "transformers",
-    "image-classification", "sentiment-analysis", "privacy", "on-device",
-    "offline", "webassembly", "onnx"
+    "react",
+    "hooks",
+    "ai",
+    "machine-learning",
+    "transformers",
+    "image-classification",
+    "sentiment-analysis",
+    "privacy",
+    "on-device",
+    "offline",
+    "webassembly",
+    "onnx"
   ],
-  "author": "react-zero-ai contributors",
+  "author": "react-zero-ai team",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -36,6 +54,6 @@
     "react": "^18",
     "tsup": "^8",
     "typescript": "^5",
-    "vitest": "^1"
+    "vitest": "^4.0.18"
   }
 }
