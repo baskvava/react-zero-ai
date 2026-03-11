@@ -4,7 +4,6 @@
 
   <p>
     <a href="https://www.npmjs.com/package/react-zero-ai"><img src="https://img.shields.io/npm/v/react-zero-ai?color=6366f1&style=flat-square" alt="NPM Version" /></a>
-    <a href="https://bundlephobia.com/package/react-zero-ai"><img src="https://img.shields.io/bundlephobia/minzip/react-zero-ai?color=10b981&style=flat-square" alt="Bundle Size" /></a>
     <img src="https://img.shields.io/badge/Web%20Workers-Enabled-f59e0b?style=flat-square" alt="Web Workers" />
   </p>
 </div>
@@ -120,19 +119,23 @@ For maximum performance, Web Workers require `SharedArrayBuffer` support. You **
 
 **Vite (`vite.config.ts`)**
 ```ts
+function crossOriginIsolation(): Plugin {
+  return {
+    name: 'cross-origin-isolation',
+    configureServer(server) {
+      server.middlewares.use((_req, res, next) => {
+        res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+        res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
+        next();
+      });
+    },
+  };
+}
+
 export default defineConfig({
-  plugins: [
-    {
-      name: 'configure-response-headers',
-      configureServer: (server) => {
-        server.middlewares.use((_req, res, next) => {
-          res.setHeader('Cross-Origin-Embedder-Policy', 'require-corp');
-          res.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
-          next();
-        });
-      },
-    }
-  ]
+  plugins: [react(), crossOriginIsolation()],
+  optimizeDeps: { exclude: ['@huggingface/transformers'] },
+  worker: { format: 'es' },
 });
 ```
 *Next.js and Webpack guides coming soon.*

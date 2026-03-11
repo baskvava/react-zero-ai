@@ -1,0 +1,42 @@
+name: Publish to npm
+
+on:
+  release:
+    types: [published] # 當在 GitHub 建立新 Release 時觸發
+  # 或者你也可以透過 push tag 來觸發
+  # push:
+  #   tags:
+  #     - 'v*'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    
+    # 🚨 這是最重要的一步，賦予讀取內容與寫入 ID token 的權限
+    permissions:
+      contents: read
+      id-token: write 
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20' # 替換成你專案使用的 Node.js 版本
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build project
+        run: npm run build # 如果你的套件需要編譯的話 (例如 tsc)
+
+      - name: Publish to npm
+        # 使用 --provenance 標籤，npm 會自動驗證 Trusted Publisher
+        run: npm publish --provenance --access public
+        env:
+          # 注意：使用 Trusted Publisher 後，你不必在 GitHub Secrets 設定 NPM_TOKEN
+          # npm publish --provenance 指令會自動透過 OIDC 取得對應憑證
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

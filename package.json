@@ -1,6 +1,6 @@
 {
-  "name": "@baskvava/react-zero-ai",
-  "version": "0.1.2",
+  "name": "react-zero-ai",
+  "version": "0.1.0",
   "description": "React hooks for on-device AI — image classification, sentiment analysis, embeddings. Zero uploads, full privacy.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -42,7 +42,7 @@
     "type": "git",
     "url": "https://github.com/baskvava/react-zero-ai.git"
   },
-  "homepage": "https://github.com/baskvava/react-zero-ai#readme",
+  "homepage": "https://baskvava.github.io/react-zero-ai/",
   "peerDependencies": {
     "react": ">=18.0.0"
   },

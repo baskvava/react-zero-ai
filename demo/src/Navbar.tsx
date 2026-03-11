@@ -30,7 +30,7 @@ export default function Navbar({ onGoToDemo }: NavbarProps) {
           >
             Docs
           </Link>
-          <a href="https://github.com/react-zero-ai/react-zero-ai" target="_blank" rel="noopener noreferrer" className="nav-link">
+          <a href="https://github.com/baskvava/react-zero-ai" target="_blank" rel="noopener noreferrer" className="nav-link">
             GitHub
           </a>
           <button className="nav-btn-action" onClick={onGoToDemo}>

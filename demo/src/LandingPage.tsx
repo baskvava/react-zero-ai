@@ -41,7 +41,7 @@ export default function LandingPage({ onEnter }: LandingPageProps) {
                 <path d="M4.16666 10L10 15.8333L15.8333 10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
-            <a href="https://github.com/react-zero-ai/react-zero-ai" target="_blank" rel="noopener noreferrer" className="btn-hero secondary">
+            <a href="https://github.com/baskvava/react-zero-ai" target="_blank" rel="noopener noreferrer" className="btn-hero secondary">
               View on GitHub
             </a>
           </div>
