@@ -3,8 +3,12 @@
   <p><strong>Insanely fast, 100% Client-Side AI React Hooks. Zero backend. Zero API keys. Absolute Privacy.</strong></p>
 
   <p>
-    <a href="https://www.npmjs.com/package/react-zero-ai"><img src="https://img.shields.io/npm/v/react-zero-ai?color=6366f1&style=flat-square" alt="NPM Version" /></a>
-    <img src="https://img.shields.io/badge/Web%20Workers-Enabled-f59e0b?style=flat-square" alt="Web Workers" />
+    <a href="https://www.npmjs.com/package/react-zero-ai"><img src="https://img.shields.io/npm/v/react-zero-ai?color=6366f1&style=flat-square" alt="NPM Version" /></a> <img src="https://img.shields.io/badge/Web%20Workers-Enabled-f59e0b?style=flat-square" alt="Web Workers" /> <img src="https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square" alt="License" />
+  </p>
+
+  <p>
+    <em>Showcase GIF / Video Placeholder (Show typing -> instant sentiment, or image drag & drop)</em><br/>
+    <a href="https://baskvava.github.io/react-zero-ai/"><strong>Try the Live Demo</strong></a>
   </p>
 </div>
 
@@ -12,15 +16,15 @@
 
 Imagine dropping an **entire AI model** straight into your React component with a single hook. No expensive backend servers to spin up. No API keys to leak. No CORS nightmare. Just pure, offline-capable AI running directly in your user's browser at 60fps.
 
-`react-zero-ai` gives you production-ready Transformers.js models wrapped in beautiful, buttery-smooth React Hooks. All inference runs entirely on a background Web Worker thread, meaning your UI never blocks, even when doing heavy ML computations.
+`react-zero-ai` gives you production-ready full Transformers.js models wrapped in beautiful, buttery-smooth React Hooks. All inference runs entirely on a background Web Worker thread, meaning your UI never blocks, even when doing heavy ML computations.
 
 ## 🤯 Why React developers are going crazy over this:
 - **Zero Config**: `npm install react-zero-ai` and you are done. No Webpack configuring, no WASM nightmare.
 - **Main Thread === Unblocked**: We automatically spawn a background Web Worker pool. Your React tree stays silky smooth while ML models crunch gigabytes of data.
-- **100% Free**: Run unlimited inferences. No OpenAI billing. No Hugging Face API limits. Compute is offloaded to your users' devices.
-- **Total Privacy**: The data never leaves the browser. Perfect for analyzing sensitive PII, internal documents, or private images.
+- **100% Free & Unlimited**: Run unlimited inferences. No OpenAI billing. No Hugging Face API limits. Compute is completely offloaded to your users' devices.
+- **Total Privacy (Air-gapped capable)**: The data *never* leaves the browser. Perfect for analyzing sensitive PII, internal documents, or private images.
 
-## 🚀 Quick Start
+## 🚀 Quick Start (Copy & Paste ready)
 
 ```bash
 npm install react-zero-ai
@@ -33,10 +37,10 @@ Analyze text sentiment instantly as the user types.
 import { useSentimentAnalysis } from 'react-zero-ai';
 
 function ReviewBox() {
-  const { analyze, isReady, isLoading } = useSentimentAnalysis();
+  const { analyze, isLoading } = useSentimentAnalysis();
   const [result, setResult] = useState(null);
 
-  if (isLoading) return <div>Downloading AI Model...</div>;
+  if (isLoading) return <div>Downloading AI Model (Cached after first load)...</div>;
 
   return (
     <div>
@@ -57,15 +61,16 @@ Build local semantic search *without* a vector database! Find related sentences 
 import { useEmbeddings } from 'react-zero-ai';
 
 function OfflineSearch() {
-  const { findSimilar, isReady } = useEmbeddings();
+  const { findSimilar } = useEmbeddings();
   const candidates = ["How to reset password", "Contact support", "Pricing limits"];
   
   const search = async (query) => {
+    // finds the top 3 most semantically similar matches
     const results = await findSimilar(query, candidates, 3);
     console.log(results); // [{ text: "How to reset password", score: 0.89 }, ...]
   };
 
-  return <button onClick={() => search("I forgot my login")}>Search</button>;
+  return <button onClick={() => search("I forgot my login")}>Search FAQ</button>;
 }
 ```
 
@@ -76,7 +81,7 @@ Drop an image in, get predictions out. Support for any Hugging Face Vision Trans
 import { useImageClassifier } from 'react-zero-ai';
 
 function Dropzone() {
-  const { classify, isReady } = useImageClassifier({ topk: 3 });
+  const { classify } = useImageClassifier({ topk: 3 });
 
   const onFileDrop = async (file) => {
     const { results } = await classify(file);
@@ -94,7 +99,7 @@ Draw bounding boxes around objects in images.
 import { useObjectDetection } from 'react-zero-ai';
 
 function ObjectScanner() {
-  const { detect, isReady } = useObjectDetection();
+  const { detect } = useObjectDetection();
 
   const scan = async (imageUrl) => {
     const { objects } = await detect(imageUrl);
@@ -119,6 +124,9 @@ For maximum performance, Web Workers require `SharedArrayBuffer` support. You **
 
 **Vite (`vite.config.ts`)**
 ```ts
+import { defineConfig, Plugin } from 'vite';
+import react from '@vitejs/plugin-react';
+
 function crossOriginIsolation(): Plugin {
   return {
     name: 'cross-origin-isolation',
@@ -141,4 +149,4 @@ export default defineConfig({
 *Next.js and Webpack guides coming soon.*
 
 ## 📄 License
-MIT © Local AI React Team
+[MIT](LICENSE) © Local AI React Team
